@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">DashBoard</h1>
+
+		<h:body>
+
+
+			<h3 style="margin-left: 10px">Aqui o usuário terá acesso ao
+				crescimento evolutivo nas Avaliações</h3>
+
+			<!-- Editar informaçãoes Pessoais do Perfil -->
+			<h:form id="editPerfil">
+				<p:dialog closeOnEscape="true" header="Editar Perfil" modal="true"
+					id="editarPerfilUsuario" widgetVar="editarPerfil">
+					<p:panelGrid styleClass="semBorda" columns="2">
+
+						<p:outputLabel value="Nome Completo: " />
+						<p:inputText size="40" placeholder="Nome Completo" />
+
+						<p:outputLabel value="Data de Nascimento: " />
+						<p:calendar mask="99/99/9999" placeholder="Data Nasc" size="9" />
+
+						<p:outputLabel value="Cpf: " />
+						<p:inputMask mask="99999999999" placeholder="Cpf" size="11" />
+
+						<p:outputLabel value="Endereço(Logradouro): " />
+						<p:inputText size="32" placeholder="logradouro" maxlength="30" />
+
+						<p:outputLabel value="Nº: " />
+						<p:inputText size="4" placeholder="nº" maxlength="5" />
+
+						<p:outputLabel value="Bairro: " />
+						<p:inputText maxlength="20" placeholder="Bairro" />
+
+						<p:outputLabel value="Cidade: " />
+						<p:inputText maxlength="30" placeholder="Cidade" />
+
+						<p:outputLabel value="Estado: " />
+						<p:inputText placeholder="Estado" />
+
+						<p:outputLabel value="CEP: " />
+						<p:inputMask size="8" mask="99999999" placeholder="CEP" />
+
+						<p:outputLabel value="Telefone de Contato: " />
+						<p:inputMask mask="99999999999" placeholder="Telefone " />
+
+						<p:outputLabel value="Email: " />
+						<p:inputText size="30" maxlength="30" placeholder="email" />
+
+						<p:outputLabel />
+						<p:commandButton value="Atualizar" />
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+
+			<!-- Alterar Senha do Perfil do Usuario -->
+			<h:form id="editSenha">
+
+				<p:dialog closeOnEscape="true" header="Alterar Senha" modal="true"
+					widgetVar="alterarSenha">
+
+					<p:panelGrid styleClass="semBorda" columns="2">
+
+						<p:outputLabel value="Informe sua senha Atual:" />
+						<p:password placeholder="Senha Atual" />
+
+						<p:outputLabel value="Informe uma Nova Senha:" />
+						<p:password maxlength="20" placeholder="Nova Senha" id="password" />
+
+						<p:outputLabel value="Confirme sua nova Senha:" />
+						<p:password placeholder="Confirma Nova Senha" match="password" />
+
+						<p:outputLabel />
+						<p:commandButton value="Alterar" />
+
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+
+			<br />
+
+			<!-- Gŕafico de Linhas -->
+
+			<p:chart type="line" model="#{graficoAvaliacoesBean.lineModel1}"
+				responsive="true" style="height:380px" />
+
+			<footer>
+				<div style="float: left">
+					<h3>©Copyright Todos os Direitos reservados a
+						www.spacefitnes.com.br</h3>
+
+				</div>
+
+			</footer>
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Space Fitnes</title>
+	<h:outputStylesheet library="f1informatica/styles" name="custom.css" />
+</h:head>
+
+<h:body>
+
+	<header>
+
+		<div style="float: left">
+			<link outcome="Home.xhtml">
+			<h1 style="margin-left: 50px">Space Fitnes</h1>
+			</link>
+		</div>
+
+		<div style="float: right; margin-right: 80px">
+
+			<h:form style="display: inline-block">
+
+				<p:menubar styleClass="menu-sistema">
+
+					<p:submenu label="Cadastros">
+						<p:menuitem style="margin-left:8px" value="Usuários"
+							action="/cadastros/cadastroUsuario.xhtml" />
+					</p:submenu>
+					<p:menuitem style="margin-left:10px" value="Contato"
+						oncomplete="PF('contatoDialog').show()" />
+					<p:menuitem style="margin-left:10px" value="Fique por Dentro"
+						oncomplete="PF('fiquepordentrodamala').show()" />
+					<p:menuitem style="margin-left:10px" value="Ajuda"
+						oncomplete="PF('ajuda').show()" />
+				</p:menubar>
+
+			</h:form>
+		</div>
+		<div style="clear: both"></div>
+
+	</header>
+
+	<p:messages autoUpdate="true" closable="true" />
+	<h:form styleClass="login">
+
+		<h1 style="margin-left: 90px">Entrar</h1>
+
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Usuário:" />
+			<p:inputText id="usuario" size="20"
+				value="#{loginUsuarioBean.nomeusuario}"
+				placeholder="Informe seu usuario" title="Informe o seu Usuario" />
+			<p:outputLabel value="Senha:" />
+
+			<p:password id="senha" size="20" value="#{loginUsuarioBean.senha}"
+				placeholder="Informe sua senha" title="Informe a sua senha" />
+			<p:outputLabel />
+			<p:commandButton style="margin-left:22px" value="Acessar"
+				action="#{loginUsuarioBean.login()}" />
+		</h:panelGrid>
+	</h:form>
+
+
+	<!-- Entre em contato -->
+	<h:form id="frm">
+
+		<p:dialog header="Entre em Contato Conosco" closeOnEscape="true"
+			modal="true" resizable="false" widgetVar="contatoDialog" id="contato">
+
+			<p:outputLabel />
+			<p:panelGrid columns="2" styleClass="semBorda">
+
+				<p:outputLabel value="Nome Completo:" />
+				<p:inputText size="27" placeholder="Informe seu nome Completo"
+					value="#{contatoController.nomeCompleto}" />
+
+				<p:outputLabel value="E-mail:" />
+				<p:inputText size="27" placeholder="Informe seu E-mail"
+					value="#{contatoController.email}" />
+
+
+				<p:outputLabel value="Mensagem:" />
+				<h:panelGroup>
+					<p:inputTextarea cols="27" rows="5"
+						placeholder="Escreva uma mensagem para nós"
+						value="#{contatoController.mensagem}" maxlength="140"
+						counter="contador" counterTemplate="Restam {0} caracteres" />
+					<br></br>
+					<h:outputText id="contador" />
+				</h:panelGroup>
+				<p:outputLabel />
+				<p:commandButton value="Enviar" />
+			</p:panelGrid>
+
+		</p:dialog>
+
+		<!-- NewsLetter -->
+		<p:dialog id="fiquepordentro" widgetVar="fiquepordentrodamala"
+			header="Assine nossa NewsLetter e fique por dentro das Novidades">
+
+			<p:panelGrid columns="2" styleClass="ui-panelgrid">
+
+				<p:outputLabel value="E-Mail:" />
+				<p:inputText size="50" />
+				<p:outputLabel />
+				<p:commandButton value="Assinar" />
+
+			</p:panelGrid>
+
+		</p:dialog>
+
+	</h:form>
+
+	<p:separator style="margin-top: 40px" />
+
+	<footer>
+		©Copyright Todos os Direitos Reservados a www.spacefitnes.com.br
+		<div style="float: left">
+			<p:link
+				href="https://www.facebook.com/Space-Fitnes-508123322701505/?ref=hl">
+				<h:graphicImage style="margin-left: 1200px" library="f1informatica/images"
+					name="facebook.gif" />
+			</p:link>
+		</div>
+	</footer>
+
+	<p:dialog closeOnEscape="true" header="Ajuda" showEffect="explode"
+		hideEffect="bounce" modal="true" widgetVar="ajuda" height="140"
+		width="300">
+		<h:outputText
+			value="Essa é a pagina principal do aplicativo, aqui você consegue acessar o sistema.
+	Se nao for cadastrado, clique em na guia Cadastros e cadastar Usuario, para se cadastrar grátis
+	about Space Fitnes ©Copyright" />
+	</p:dialog>
+
+</h:body>
+
+</html>

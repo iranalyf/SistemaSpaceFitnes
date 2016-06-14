@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout2.xhtml">
+
+	<ui:define name="corpo">
+		<h1>Cadastro de Usuario</h1>
+
+		<h:form>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:button value="voltar" outcome="/Home.xhtml" />
+					<p:button value="Limpar" />
+					<p:commandButton value="Cadastrar"
+						action="#{cadastroUsuarioBean.cadastrarUsuario}">
+
+						<p:confirm icon="ui-icon-alert" header="Confirmar Cadastro"
+							message="Deseja Cadastrar esse Usuário?" />
+					</p:commandButton>
+				</f:facet>
+			</p:toolbar>
+
+
+			<br></br>
+			<span>Os campos marcados com (*) são obrigatórios</span>
+			<div class="ui-fluid">
+				<p:panelGrid columns="4" style="margin-top:20px" cellpadding="2px"
+					layout="grid" styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
+
+					<p:outputLabel value="Nome Completo: " for="nomeCompleto" />
+					<p:inputText size="30" placeholder="Nome Completo"
+						id="nomeCompleto" value="#{cadastroUsuarioBean.user.nomCompleto}" />
+
+					<p:outputLabel value="Como Deseja ser chamado:" for="apelido" />
+					<p:inputText size="30" placeholder="Como Gostaria de ser chamado"
+						value="#{cadastroUsuarioBean.user.apelido}" id="apelido" />
+
+					<p:outputLabel value="Data de Nascimento: " for="dataNas" />
+					<p:calendar mask="99/99/9999" placeholder="Data Nasc" size="9"
+						value="#{cadastroUsuarioBean.user.dataNascimento}"
+						navigator="true" pattern="dd/MM/yyyy" id="dataNas" />
+
+					<p:outputLabel value="Endereço(Logradouro): " for="endereco" />
+					<p:inputText size="30" placeholder="logradouro" maxlength="30"
+						value="#{cadastroUsuarioBean.user.logradouro}" id="endereco" />
+
+					<p:outputLabel value="Nº: " for="numeroCasa" />
+					<p:inputText size="4" placeholder="nº" maxlength="5"
+						value="#{cadastroUsuarioBean.user.numeroCasa}" id="numeroCasa" />
+
+					<p:outputLabel value="Bairro: " for="bairro" />
+					<p:inputText maxlength="20" placeholder="Bairro"
+						value="#{cadastroUsuarioBean.user.bairro}" id="bairro" />
+
+					<p:outputLabel value="Cidade: " for="cidade" />
+					<p:inputText maxlength="30" placeholder="Cidade"
+						value="#{cadastroUsuarioBean.user.cidade}" id="cidade" />
+
+					<p:outputLabel value="Estado: " for="estado" />
+					<p:inputText value="#{cadastroUsuarioBean.user.estado}"
+						placeholder="Sigla Estado" maxlength="2" id="estado" />
+
+					<p:outputLabel value="CEP: " for="cep" />
+					<p:inputMask size="8" mask="99999999" placeholder="CEP"
+						value="#{cadastroUsuarioBean.user.numeroCep}" id="cep" />
+
+					<p:outputLabel value="Telefone de Contato: " for="tel" />
+					<p:inputMask mask="99999999999" placeholder="Telefone "
+						value="#{cadastroUsuarioBean.user.telefone}" id="tel" />
+
+					<p:outputLabel value="Email: " for="email" />
+					<p:inputText size="30" maxlength="30" placeholder="email"
+						value="#{cadastroUsuarioBean.user.email}" id="email" />
+
+					<p:outputLabel value="Nome de Usuário: " for="usuario" />
+					<p:inputText maxlength="15" placeholder="Crie um nome de Usuário"
+						value="#{cadastroUsuarioBean.user.nomUsuario}" id="usuario" />
+
+					<p:outputLabel value="Senha: " for="senha" />
+
+					<p:password maxlength="20" placeholder="informe uma senha"
+						value="#{cadastroUsuarioBean.user.senha}" match="confirmesenha"
+						id="senha" />
+
+
+					<p:outputLabel value="Confirme sua Senha: " />
+					<p:password placeholder="confirme sua senha" id="confirmesenha" />
+
+				</p:panelGrid>
+			</div>
+			<h5 style="margin-left: 30px">Ao clicar em Cadastrar, você
+				concorda com os nossos Termos e que leu a nossa Política de Dados,
+				incluindo o nosso Uso de Cookies.</h5>
+
+			<p:dialog closeOnEscape="true" header="ajuda" hideEffect="bounce"
+				modal="true" showEffect="explode" widgetVar="ajuda" width="300"
+				height="120">
+				<h:outputText
+					value="Aqui você consegue se cadastar para poder utilizar o aplicativo Space Fitnes, basta preencher
+os campos e clicar em cadastrar" />
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
